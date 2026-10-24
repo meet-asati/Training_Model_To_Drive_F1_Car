@@ -1,0 +1,29 @@
+{
+    "F1Driver": {
+        "checkpoints": [
+            {
+                "steps": 174795,
+                "file_path": "results\\run1\\F1Driver\\F1Driver-174795.onnx",
+                "reward": 1.0275642375424682e-05,
+                "creation_time": 1792861437.6206105,
+                "auxillary_file_paths": [
+                    "results\\run1\\F1Driver\\F1Driver-174795.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 174795,
+            "file_path": "results\\run1\\F1Driver.onnx",
+            "reward": 1.0275642375424682e-05,
+            "creation_time": 1792861437.6206105,
+            "auxillary_file_paths": [
+                "results\\run1\\F1Driver\\F1Driver-174795.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.2.0.dev0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

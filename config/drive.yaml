@@ -1,0 +1,43 @@
+behaviors:
+  F1Driver: # IMPORTANT: This MUST match the "Behavior Name" in your Unity Inspector exactly
+    trainer_type: ppo
+    
+    hyperparameters:
+      # The VRAM Managers: Keeping this small ensures your RTX 4060 doesn't crash
+      batch_size: 256
+      buffer_size: 2048
+      
+      # The Learning Speed: How big of a jump the brain makes after a mistake
+      learning_rate: 0.0003
+      learning_rate_schedule: linear
+      
+      # Exploration (Beta): Higher means the car will try random crazy things 
+      # early on (like swerving) to discover new ways to get rewards.
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+
+    network_settings:
+      # NORMALIZE: Set to TRUE. This is magic for Raycast sensors. 
+      # It scales all laser distances to a 0-1 range so the brain digests it easier.
+      normalize: true
+      hidden_units: 128
+      num_layers: 2
+
+    reward_signals:
+      extrinsic:
+        # Gamma: How far into the future the AI cares about. 
+        # 0.99 means it cares about long-term racing, not just the next 1 second.
+        gamma: 0.99 
+        strength: 1.0
+
+    # How many physics steps before adding memories to the main buffer
+    time_horizon: 64
+    
+    # Total Practice Time: 5 million frames. 
+    # (You can stop it early with Ctrl+C and it will save your progress)
+    max_steps: 5000000
+    
+    # Print an update to the command line every 10,000 steps
+    summary_freq: 10000
