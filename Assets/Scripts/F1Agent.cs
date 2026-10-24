@@ -41,24 +41,24 @@ public class F1Agent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        // Extract the AI's choices. Continuous actions are numbers between -1.0 and 1.0.
-        float steeringAction = actions.ContinuousActions[0]; // -1 is hard left, 1 is hard right
-        float gasAction = actions.ContinuousActions[1];      // -1 is reverse/brake, 1 is full gas
+        float steeringAction = actions.ContinuousActions[0];
 
-        // Apply physical movement
-        Vector3 forwardMove = transform.forward * gasAction * moveSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + forwardMove);
+        float gasAction = Mathf.Clamp(actions.ContinuousActions[1], 0f, 1f);
 
-        float turnAmount = steeringAction * turnSpeed * Time.deltaTime;
+        rb.AddForce(transform.forward * gasAction * moveSpeed, ForceMode.Acceleration);
+
+        float turnAmount = steeringAction * turnSpeed * Time.fixedDeltaTime;
         transform.Rotate(0f, turnAmount, 0f);
-
-        // The Reward Function: Give a tiny piece of candy for moving forward fast
-        // We use dot product to ensure it's moving forward, not sliding sideways
+        
         float forwardSpeed = Vector3.Dot(rb.linearVelocity, transform.forward);
+
         if (forwardSpeed > 0)
         {
+            // The AI finally gets paid for pressing the gas!
             AddReward(forwardSpeed * 0.01f);
         }
+
+        Debug.Log(rb.linearVelocity.magnitude);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -85,9 +85,9 @@ public class F1Agent : Agent
         {
             // Give a piece of kibble! (Small dense reward)
             AddReward(0.5f);
-            
+
             // Move the target to the next checkpoint in the array
-            nextCheckpointIndex++; 
+            nextCheckpointIndex++;
 
             // 2. Did we just pass the final checkpoint?
             if (nextCheckpointIndex >= checkpoints.Length)
@@ -99,7 +99,7 @@ public class F1Agent : Agent
             }
         }
         // 3. Did we hit a checkpoint, but it was the WRONG one?
-        else if (other.CompareTag("Checkpoint")) 
+        else if (other.CompareTag("Checkpoint"))
         {
             // The car is driving backward or trying to cheat by cutting the track!
             // Give a massive penalty and stop the run.

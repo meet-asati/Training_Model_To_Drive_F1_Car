@@ -18,15 +18,24 @@
                 "auxillary_file_paths": [
                     "results\\run2\\F1Driver\\F1Driver-112872.pt"
                 ]
+            },
+            {
+                "steps": 114531,
+                "file_path": "results\\run2\\F1Driver\\F1Driver-114531.onnx",
+                "reward": 15.000006620700542,
+                "creation_time": 1792865083.9812732,
+                "auxillary_file_paths": [
+                    "results\\run2\\F1Driver\\F1Driver-114531.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 112872,
+            "steps": 114531,
             "file_path": "results\\run2\\F1Driver.onnx",
-            "reward": 17.285721869695756,
-            "creation_time": 1792864256.8700914,
+            "reward": 15.000006620700542,
+            "creation_time": 1792865083.9812732,
             "auxillary_file_paths": [
-                "results\\run2\\F1Driver\\F1Driver-112872.pt"
+                "results\\run2\\F1Driver\\F1Driver-114531.pt"
             ]
         }
     },
