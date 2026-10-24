@@ -15,6 +15,17 @@ public class F1Agent : Agent
     public Transform[] checkpoints;
     private int nextCheckpointIndex = 0;
 
+    public float gripMultiplier = 0.95f;
+
+    private void FixedUpdate()
+    {
+        Vector3 forwardVelocity = transform.forward * Vector3.Dot(rb.linearVelocity, transform.forward);
+
+        Vector3 rightVelocity = transform.right * Vector3.Dot(rb.linearVelocity, transform.right);
+
+        rb.linearVelocity = forwardVelocity + rightVelocity * (1f - gripMultiplier);
+    }
+
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,7 +60,7 @@ public class F1Agent : Agent
 
         float turnAmount = steeringAction * turnSpeed * Time.fixedDeltaTime;
         transform.Rotate(0f, turnAmount, 0f);
-        
+
         float forwardSpeed = Vector3.Dot(rb.linearVelocity, transform.forward);
 
         if (forwardSpeed > 0)
