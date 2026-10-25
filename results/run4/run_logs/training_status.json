@@ -1,0 +1,38 @@
+{
+    "F1Driver": {
+        "checkpoints": [
+            {
+                "steps": 499940,
+                "file_path": "results\\run4\\F1Driver\\F1Driver-499940.onnx",
+                "reward": 117.25735881111838,
+                "creation_time": 1792871427.6036706,
+                "auxillary_file_paths": [
+                    "results\\run4\\F1Driver\\F1Driver-499940.pt"
+                ]
+            },
+            {
+                "steps": 833800,
+                "file_path": "results\\run4\\F1Driver\\F1Driver-833800.onnx",
+                "reward": 124.49513166091022,
+                "creation_time": 1792874285.2565098,
+                "auxillary_file_paths": [
+                    "results\\run4\\F1Driver\\F1Driver-833800.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 833800,
+            "file_path": "results\\run4\\F1Driver.onnx",
+            "reward": 124.49513166091022,
+            "creation_time": 1792874285.2565098,
+            "auxillary_file_paths": [
+                "results\\run4\\F1Driver\\F1Driver-833800.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.2.0.dev0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

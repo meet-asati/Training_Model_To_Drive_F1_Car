@@ -69,6 +69,8 @@ public class F1Agent : Agent
             AddReward(forwardSpeed * 0.01f);
         }
 
+        AddReward(-1.0f / MaxStep);
+
         Debug.Log(rb.linearVelocity.magnitude);
     }
 
